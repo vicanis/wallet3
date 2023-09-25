@@ -1,5 +1,5 @@
-import Button from "@/components/button";
-import Radio from "@/components/radio";
+import Button from "@/shared/button";
+import Radio from "@/shared/radio";
 import { ReactNode } from "react";
 
 export default function DemoPage() {
