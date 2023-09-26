@@ -12,12 +12,12 @@ export default function WelcomePage() {
                 width={112}
                 height={110}
             />
-            <div className="text-center">
+            <div className="text-center text-sm">
                 This is an application to handle your own personal accounting
             </div>
 
             <Link href="/login">
-                <Button>Start</Button>
+                <Button appearance="primary">Start</Button>
             </Link>
         </div>
     );
