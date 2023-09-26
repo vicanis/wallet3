@@ -19,16 +19,10 @@ function buildStyle({ appearance = "normal", disabled }: ButtonProps): string {
     const list: string[] = ["py-4", "px-10"];
 
     if (appearance === "primary" || appearance === "normal") {
-        list.push(
-            "border-[1px]",
-            "border-solid",
-            "border-gray",
-            "rounded-2xl",
-            "font-bold"
-        );
+        list.push("border-[1px]", "border-solid", "border-gray", "rounded-2xl");
 
         if (appearance === "primary") {
-            list.push("bg-blue", "text-white");
+            list.push("font-bold", "bg-blue", "text-white");
         }
     }
 
