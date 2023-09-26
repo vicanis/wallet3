@@ -27,7 +27,7 @@ function buildStyle({ disabled }: RadioProps) {
         "w-10",
         "h-10",
         "rounded-[50%]",
-        "bg-gray-main",
+        "bg-gray",
         "flex",
         "items-center",
         "justify-center",

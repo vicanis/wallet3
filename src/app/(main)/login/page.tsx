@@ -4,20 +4,25 @@ import Link from "next/link";
 
 export default function LoginPage() {
     return (
-        <div className="grid gap-4 items-center justify-items-center h-full">
+        <div
+            className="grid gap-4 items-center justify-items-center h-full"
+            style={{
+                gridTemplateRows: "2fr 1fr 1fr 1fr 1fr 3fr",
+            }}
+        >
             <div className="text-center">
-                To store your data you need to register on the site
+                To save your data you need to register
             </div>
 
             <Link href="/register">
-                <Button>Register</Button>
+                <Button appearance="primary">Register</Button>
             </Link>
 
             <Link href="/login">
-                <Button appearance="subtle">Login</Button>
+                <Button appearance="normal">Login</Button>
             </Link>
 
-            <div>OR</div>
+            <Divider />
 
             <div>Login with</div>
 
@@ -37,9 +42,23 @@ export default function LoginPage() {
                 />
             </div>
 
+            <Divider />
+
             <Link href="/login">
-                <Button appearance="subtle">Continue without account</Button>
+                <Button appearance="subtle">
+                    Continue without registration
+                </Button>
             </Link>
+        </div>
+    );
+}
+
+function Divider() {
+    return (
+        <div className="flex w-full items-center gap-4 px-4 text-gray-dark">
+            <div className="border-b-[1px] border-solid border-gray h-[1px] w-full" />
+            <span>OR</span>
+            <div className="border-b-[1px] border-solid border-gray h-[1px] w-full" />
         </div>
     );
 }
