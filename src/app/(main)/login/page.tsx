@@ -1,6 +1,9 @@
+"use client";
+
 import Button from "@/shared/button";
 import Image from "next/image";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
     return (
@@ -14,9 +17,9 @@ export default function LoginPage() {
                     <Button appearance="primary">Register</Button>
                 </Link>
 
-                <Link href="/login">
-                    <Button appearance="normal">Login</Button>
-                </Link>
+                <Button appearance="normal" onClick={() => signIn("email")}>
+                    Login
+                </Button>
             </div>
 
             <Divider />
@@ -25,24 +28,36 @@ export default function LoginPage() {
                 <div>Login with</div>
 
                 <div className="flex gap-6">
-                    <Image
-                        src="/assets/facebook.svg"
-                        alt="Facebook"
-                        width={45}
-                        height={45}
-                    />
-                    <Image
-                        src="/assets/vk.svg"
-                        alt="VK"
-                        width={45}
-                        height={45}
-                    />
-                    <Image
-                        src="/assets/google.svg"
-                        alt="Google"
-                        width={45}
-                        height={45}
-                    />
+                    <button onClick={() => signIn("facebook")}>
+                        <Image
+                            src="/assets/facebook.svg"
+                            alt="Facebook"
+                            width={45}
+                            height={45}
+                        />
+                    </button>
+                    <button onClick={() => signIn("vk")}>
+                        <Image
+                            src="/assets/vk.svg"
+                            alt="VK"
+                            width={45}
+                            height={45}
+                        />
+                    </button>
+                    <button
+                        onClick={() =>
+                            signIn("google", {
+                                callbackUrl: "http://localhost:3000",
+                            })
+                        }
+                    >
+                        <Image
+                            src="/assets/google.svg"
+                            alt="Google"
+                            width={45}
+                            height={45}
+                        />
+                    </button>
                 </div>
             </div>
 
