@@ -2,8 +2,9 @@
 import Facebook from "next-auth/providers/facebook";
 import VK from "next-auth/providers/vk";
 import Google from "next-auth/providers/google";
+import { AuthOptions } from "next-auth";
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
     providers: [
         // Email({}),
         Facebook({
