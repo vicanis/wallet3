@@ -93,19 +93,16 @@ function Icon({
     active,
     image,
     color,
-    onClick,
 }: {
     active: boolean;
     image: ReactNode;
     color: string;
-    onClick?: () => void;
 }) {
     return (
         <div
             className={`w-full flex justify-center ${
                 active ? "" : "opacity-40"
             }`}
-            onClick={onClick}
         >
             {image}
 
