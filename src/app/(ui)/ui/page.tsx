@@ -1,4 +1,7 @@
+import Loading from "@/features/loading";
+import UserCard from "@/features/user/card";
 import Button from "@/shared/button";
+import Overlay from "@/shared/overlay";
 import Radio from "@/shared/radio";
 import { ReactNode } from "react";
 
@@ -6,14 +9,29 @@ export default function DemoPage() {
     return (
         <div>
             <Group title="Button">
-                <Block title="Active">
-                    <Button>Add</Button>
+                <Block title="Primary active">
+                    <Button appearance="primary">Click me</Button>
                 </Block>
-                <Block title="Disabled">
-                    <Button disabled>Add</Button>
+                <Block title="Primary disabled">
+                    <Button appearance="primary" disabled>
+                        Click me
+                    </Button>
                 </Block>
-                <Block title="Subtle">
-                    <Button appearance="subtle">Add</Button>
+                <Block title="Normal active">
+                    <Button appearance="normal">Click me</Button>
+                </Block>
+                <Block title="Normal disabled">
+                    <Button appearance="normal" disabled>
+                        Click me
+                    </Button>
+                </Block>
+                <Block title="Subtle active">
+                    <Button appearance="subtle">Click me</Button>
+                </Block>
+                <Block title="Subtle disabled">
+                    <Button appearance="subtle" disabled>
+                        Click me
+                    </Button>
                 </Block>
             </Group>
 
@@ -23,7 +41,7 @@ export default function DemoPage() {
                 <Block title="Active checked">
                     <Radio checked>Expense</Radio>
                 </Block>
-                <Block title="Active not checked">
+                <Block title="Active unchecked">
                     <Radio>Expense</Radio>
                 </Block>
                 <Block title="Disabled checked">
@@ -31,8 +49,36 @@ export default function DemoPage() {
                         Expense
                     </Radio>
                 </Block>
-                <Block title="Disabled not checked">
+                <Block title="Disabled unchecked">
                     <Radio disabled>Expense</Radio>
+                </Block>
+            </Group>
+
+            <hr />
+
+            <Group title="Overlay">
+                <Block title="Overlay">
+                    <div className="relative w-[15em] h-[20em] border-2">
+                        <Overlay>Overlay contents</Overlay>
+                    </div>
+                </Block>
+
+                <Block title="Loading">
+                    <div className="relative w-[15em] h-[20em] border-2">
+                        <Loading />
+                    </div>
+                </Block>
+            </Group>
+
+            <hr />
+
+            <Group title="Card">
+                <Block title="User">
+                    <UserCard
+                        name="Sample user"
+                        email="test@example.com"
+                        image="/assets/noah-silliman-gzhyKEo_cbU-unsplash.jpg"
+                    />
                 </Block>
             </Group>
         </div>
