@@ -3,9 +3,31 @@
 import Button from "@/shared/button";
 import Image from "next/image";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
+import { useEffect, useState } from "react";
+import Loading from "@/features/loading";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+    const router = useRouter();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (loading) {
+            getSession().then((session) => {
+                if (session) {
+                    router.push("/");
+                } else {
+                    setLoading(false);
+                }
+            });
+        }
+    }, [loading, router]);
+
+    if (loading) {
+        return <Loading />;
+    }
+
     return (
         <div className="grid gap-4 items-center justify-items-center h-full">
             <div className="text-center">
