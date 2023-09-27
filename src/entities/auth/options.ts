@@ -20,4 +20,7 @@ export const authOptions: AuthOptions = {
             clientSecret: process.env.GOOGLE_SECRET!,
         }),
     ],
+    pages: {
+        signOut: "/auth/logout",
+    },
 };
