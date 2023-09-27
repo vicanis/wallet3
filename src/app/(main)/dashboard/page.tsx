@@ -1,4 +1,6 @@
 import { authOptions } from "@/entities/auth/options";
+import UserCard from "@/features/user/card";
+import Button from "@/shared/button";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -12,12 +14,18 @@ export default async function DashboardPage() {
     }
 
     return (
-        <div>
-            <div>Dashboard page</div>
+        <div className="m-4">
+            <div>Logged in as:</div>
 
-            <div>You are logged in</div>
+            <div className="max-w-[250px]">
+                <UserCard {...session.user!} />
+            </div>
 
-            <Link href="/api/auth/signout">Logout</Link>
+            <br />
+
+            <Link href="/api/auth/signout">
+                <Button appearance="primary">Log out</Button>
+            </Link>
         </div>
     );
 }
