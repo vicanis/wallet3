@@ -1,31 +1,15 @@
-import { authOptions } from "@/entities/auth/options";
-import UserCard from "@/features/user/card";
-import Button from "@/shared/button";
-import { getServerSession } from "next-auth";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+"use client";
 
-export default async function DashboardPage() {
-    const session = await getServerSession(authOptions);
+import SideMenuButton from "@/features/menu/side/button";
+import PrivateClientPage from "@/shared/private/client/page";
 
-    if (!session) {
-        redirect("/login");
-        return null;
-    }
-
+export default function DashboardPage() {
     return (
-        <div className="m-4">
-            <div>Logged in as:</div>
-
-            <div className="max-w-[250px]">
-                <UserCard {...session.user!} />
+        <PrivateClientPage>
+            <div className="m-4">
+                <div>Dashboard contents</div>
+                <SideMenuButton />
             </div>
-
-            <br />
-
-            <Link href="/api/auth/signout">
-                <Button appearance="primary">Log out</Button>
-            </Link>
-        </div>
+        </PrivateClientPage>
     );
 }
