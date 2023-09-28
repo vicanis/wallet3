@@ -9,7 +9,7 @@ export default function BottomBar() {
     const pathname = usePathname();
 
     return (
-        <div className="absolute bottom-0 left-0 flex items-center justify-around w-full py-3 bg-white">
+        <div className="absolute bottom-0 left-0 z-10 flex items-center justify-around w-full py-3 bg-white">
             <Link href="/dashboard">
                 <Icon
                     active={pathname === "/dashboard"}
