@@ -15,17 +15,7 @@ export default async function DashboardPage() {
 
     return (
         <div className="m-4">
-            <div>Logged in as:</div>
-
-            <div className="max-w-[250px]">
-                <UserCard {...session.user!} />
-            </div>
-
-            <br />
-
-            <Link href="/api/auth/signout">
-                <Button appearance="primary">Log out</Button>
-            </Link>
+            <div>Dashboard contents</div>
         </div>
     );
 }
