@@ -1,6 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import SideMenuButton from "./side/button";
+import { Fragment } from "react";
 
 export default function TopBar() {
     const pathname = usePathname();
@@ -41,8 +43,12 @@ export default function TopBar() {
     }
 
     return (
-        <div className="absolute top-0 left-0 z-10 w-full h-12 flex items-center justify-between p-3 bg-white">
-            <span>{pageTitle}</span>
-        </div>
+        <Fragment>
+            <div className="absolute top-0 left-0 z-10 w-full h-12 flex items-center justify-between p-3 bg-white">
+                <span>{pageTitle}</span>
+            </div>
+
+            <SideMenuButton />
+        </Fragment>
     );
 }
