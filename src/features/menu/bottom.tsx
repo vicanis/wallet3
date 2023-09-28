@@ -1,12 +1,26 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { getSession } from "next-auth/react";
 
 export default function BottomBar() {
+    const [isValidLogin, setIsValidLogin] = useState(false);
     const pathname = usePathname();
+
+    useEffect(() => {
+        if (isValidLogin) {
+            return;
+        }
+
+        getSession().then((session) => setIsValidLogin(!!session));
+    }, [isValidLogin]);
+
+    if (!isValidLogin) {
+        return null;
+    }
 
     return (
         <div className="absolute bottom-0 left-0 flex items-center justify-around w-full py-3 bg-white">
