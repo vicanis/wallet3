@@ -1,6 +1,9 @@
 import Loading from "@/features/loading";
 import UserCard from "@/features/user/card";
 import Button from "@/shared/button";
+import Amount from "@/shared/currency/amount";
+import Currency from "@/shared/currency/currency";
+import Value from "@/shared/currency/value";
 import Overlay from "@/shared/overlay";
 import Radio from "@/shared/radio";
 import { ReactNode } from "react";
@@ -79,6 +82,30 @@ export default function DemoPage() {
                         email="test@example.com"
                         image="/assets/noah-silliman-gzhyKEo_cbU-unsplash.jpg"
                     />
+                </Block>
+            </Group>
+
+            <Group title="Currency">
+                <Block title="Amount value">
+                    <Value amount={5000} />
+                </Block>
+
+                <Block title="Currency">
+                    <div className="grid gap-1">
+                        <Currency currency="USD" />
+                        <Currency currency="EUR" />
+                        <Currency currency="RUB" />
+                        <Currency currency="KZT" />
+                    </div>
+                </Block>
+
+                <Block title="Amount">
+                    <div className="grid gap-1">
+                        <Amount amount={5000} currency="USD" />
+                        <Amount amount={5000} currency="EUR" />
+                        <Amount amount={5000} currency="RUB" />
+                        <Amount amount={5000} currency="KZT" />
+                    </div>
                 </Block>
             </Group>
         </div>
