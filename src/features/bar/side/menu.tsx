@@ -28,7 +28,7 @@ export default function SideMenu({ onClick }: { onClick: () => void }) {
 
                 <div className="grid gap-5 p-4 pt-0 items-start font-medium">
                     <div className="grid gap-2">
-                        <UserCard {...data?.user!} />
+                        <UserCard user={data?.user!} />
                         <div className="flex items-center gap-2">
                             Balance: <Amount amount={5000} currency="USD" />
                         </div>

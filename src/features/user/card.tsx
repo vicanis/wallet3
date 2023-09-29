@@ -2,15 +2,17 @@ import { mdiAccountCircle } from "@mdi/js";
 import Icon from "@mdi/react";
 import { DefaultSession } from "next-auth";
 
-export default function UserCard(
-    info: Exclude<DefaultSession["user"], undefined>
-) {
+export default function UserCard({
+    user,
+}: {
+    user: Exclude<DefaultSession["user"], undefined>;
+}) {
     return (
         <div className="flex gap-3 items-center p-2 border-[1px] border-solid rounded-md bg-white">
-            {typeof info.image === "string" && (
+            {typeof user.image === "string" && (
                 <div className="rounded-[50%] overflow-hidden">
                     <ImageProxy
-                        src={info.image}
+                        src={user.image}
                         alt="avatar"
                         width={48}
                         height={48}
@@ -18,8 +20,8 @@ export default function UserCard(
                 </div>
             )}
             <div>
-                <div className="text-black">{info.name}</div>
-                <div className="text-gray-500">{info.email}</div>
+                <div className="text-black">{user.name}</div>
+                <div className="text-gray-500">{user.email}</div>
             </div>
         </div>
     );
