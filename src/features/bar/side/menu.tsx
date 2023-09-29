@@ -1,13 +1,14 @@
 import Link from "next/link";
 import UserCard from "@/features/user/card";
 import Image from "next/image";
-import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Overlay from "@/shared/overlay";
 import Icon from "@mdi/react";
 import { mdiClose } from "@mdi/js";
+import Amount from "@/shared/currency/amount";
 
-export default async function SideMenu({ onClick }: { onClick: () => void }) {
-    const session = await getSession();
+export default function SideMenu({ onClick }: { onClick: () => void }) {
+    const { data } = useSession();
 
     return (
         <Overlay centered={false} onClick={onClick}>
@@ -27,9 +28,9 @@ export default async function SideMenu({ onClick }: { onClick: () => void }) {
 
                 <div className="grid gap-5 p-4 pt-0 items-start font-medium">
                     <div className="grid gap-2">
-                        <UserCard {...session?.user!} />
+                        <UserCard user={data?.user!} />
                         <div className="flex items-center gap-2">
-                            Balance: ???
+                            Balance: <Amount amount={5000} currency="USD" />
                         </div>
 
                         <div className="w-full py-3 border-[1px] text-center">
