@@ -6,7 +6,7 @@ import Currency from "@/shared/currency/currency";
 import Value from "@/shared/currency/value";
 import Overlay from "@/shared/overlay";
 import Radio from "@/shared/radio";
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
 export default function DemoPage() {
     return (
@@ -112,6 +112,14 @@ export default function DemoPage() {
                     </div>
                 </Block>
             </Group>
+
+            <Group title="Text size">
+                <TextBlock size="Extra small" className="text-xs" />
+                <TextBlock size="Small" className="text-sm" />
+                <TextBlock size="Regular" />
+                <TextBlock size="Large" className="text-lg" />
+                <TextBlock size="Extra large" className="text-xl" />
+            </Group>
         </div>
     );
 }
@@ -131,5 +139,18 @@ function Block({ title, children }: { title: string; children?: ReactNode }) {
             <i>{title}</i>
             <div className="flex">{children}</div>
         </div>
+    );
+}
+
+function TextBlock({
+    size,
+    ...rest
+}: { size: string } & HTMLAttributes<HTMLDivElement>) {
+    return (
+        <Block title={size}>
+            <div {...rest}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            </div>
+        </Block>
     );
 }
