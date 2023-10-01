@@ -1,11 +1,14 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import SideMenuButton from "./side/button";
 import { Fragment } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import Icon from "@mdi/react";
+import { mdiChevronLeft } from "@mdi/js";
+import SideMenuButton from "./side/button";
 
 export default function TopBar() {
     const pathname = usePathname();
+    const router = useRouter();
 
     const titles: {
         regex: RegExp;
@@ -42,9 +45,18 @@ export default function TopBar() {
         }
     }
 
+    if (pathname === "/") {
+        return null;
+    }
+
     return (
         <Fragment>
-            <div className="absolute top-0 left-0 z-10 w-full h-12 flex items-center justify-between p-3 bg-white">
+            <div className="absolute top-0 left-0 z-10 w-full h-12 flex items-center gap-2 p-3 bg-white">
+                {pathname !== "/dashboard" && (
+                    <button onClick={() => router.back()}>
+                        <Icon path={mdiChevronLeft} size={1} />
+                    </button>
+                )}
                 <span>{pageTitle}</span>
             </div>
 
