@@ -16,11 +16,13 @@ export default async function getCurrencyList() {
         const data = await coll.findOne({}, { sort: { timestamp: -1 } });
 
         if (data === null) {
-            return data;
+            return {};
         }
 
         return data.currency;
     } finally {
         mongoclient.close();
     }
+
+    return {};
 }
