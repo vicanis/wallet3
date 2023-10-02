@@ -23,6 +23,4 @@ export default async function getCurrencyList() {
     } finally {
         mongoclient.close();
     }
-
-    return {};
 }
