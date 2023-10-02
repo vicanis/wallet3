@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getSession, signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Loading from "@/features/loading";
+import Loading from "@/shared/loading";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {

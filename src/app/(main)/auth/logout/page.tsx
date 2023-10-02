@@ -1,6 +1,6 @@
 "use client";
 
-import Loading from "@/features/loading";
+import Loading from "@/shared/loading";
 import { useEffect } from "react";
 import { getSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";

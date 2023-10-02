@@ -1,4 +1,4 @@
-import Loading from "@/features/loading";
+import Loading from "@/shared/loading";
 import UserCard from "@/features/user/card";
 import Button from "@/shared/button";
 import Amount from "@/shared/currency/amount";
