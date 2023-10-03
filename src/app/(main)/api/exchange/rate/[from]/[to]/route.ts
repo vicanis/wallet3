@@ -1,4 +1,7 @@
-import { GetExchangeRate } from "@/features/exchange/api/getrates";
+import {
+    ApiLayerExchangeData,
+    ExchangeApiCall,
+} from "@/features/exchange/apilayer";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -7,6 +10,10 @@ export async function GET(
 ) {
     const { from, to } = context.params;
 
-    const rate = await GetExchangeRate({ src: from, dst: to });
-    return NextResponse.json({ rate });
+    const { rates } = await ExchangeApiCall<ApiLayerExchangeData>("latest", {
+        base: from,
+        symbols: to,
+    });
+
+    return NextResponse.json({ rate: rates[to] });
 }

@@ -1,8 +1,8 @@
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { ObjectId } from "mongodb";
 import CurrencyItem from "./item";
-import { CurrencyListContext } from "../../context/currencylist";
 import BlurredSelector from "@/shared/blurredselector";
+import { useGetCurrencyListQuery } from "@/store/service/currency";
 
 export default function CurrencySelector({
     currency,
@@ -15,7 +15,11 @@ export default function CurrencySelector({
     onChange: (code: string) => void;
     mini?: boolean;
 }) {
-    const currencyList = useContext(CurrencyListContext);
+    const {
+        data: currencyList,
+        isLoading,
+        isError,
+    } = useGetCurrencyListQuery({});
 
     const currencies = useMemo<
         {
@@ -25,6 +29,10 @@ export default function CurrencySelector({
             value?: number;
         }[]
     >(() => {
+        if (typeof currencyList === "undefined") {
+            return [];
+        }
+
         const items: {
             _id: ObjectId;
             currency: string;
@@ -32,17 +40,29 @@ export default function CurrencySelector({
             value?: number;
         }[] = [];
 
-        for (const currency of Object.keys(currencyList)) {
+        for (const currency of Object.keys(currencyList.list)) {
             items.push({
                 _id: currency as unknown as ObjectId,
                 currency,
-                title: currencyList[currency],
+                title: currencyList.list[currency],
                 value,
             });
         }
 
         return items;
-    }, [currency, value, currencyList]);
+    }, [value, currencyList]);
+
+    if (isError) {
+        return null;
+    }
+
+    if (isLoading) {
+        return (
+            <div className="h-10 flex items-center px-4">
+                Loading currency list ...
+            </div>
+        );
+    }
 
     return (
         <BlurredSelector

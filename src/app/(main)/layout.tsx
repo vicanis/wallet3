@@ -1,6 +1,12 @@
+"use client";
+
 import BottomBar from "@/features/bar/bottom";
 import TopBar from "@/features/bar/top";
+import PrivateClientComponent from "@/shared/private/client/component";
+import PrivateClientPage from "@/shared/private/client/page";
 import PrivateServerComponent from "@/shared/private/server/component";
+import { store } from "@/store/store";
+import { Provider } from "react-redux";
 
 export default function RootLayout({
     children,
@@ -16,12 +22,12 @@ export default function RootLayout({
                         maxHeight: "calc(100% - 6rem)",
                     }}
                 >
-                    {children}
+                    <Provider store={store}>{children}</Provider>
                 </div>
-                <PrivateServerComponent>
+                <PrivateClientComponent>
                     <TopBar />
                     <BottomBar />
-                </PrivateServerComponent>
+                </PrivateClientComponent>
             </div>
         </div>
     );

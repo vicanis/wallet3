@@ -1,7 +1,12 @@
-import getCurrencyList from "@/features/currency/api/getcurrencylist";
+import {
+    ApiLayerCurrencyList,
+    CurrencyApiCall,
+} from "@/features/exchange/apilayer";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-    const currencyList = await getCurrencyList();
-    return NextResponse.json({ list: currencyList });
+    const { currencies: list } = await CurrencyApiCall<ApiLayerCurrencyList>(
+        "list"
+    );
+    return NextResponse.json({ list });
 }
