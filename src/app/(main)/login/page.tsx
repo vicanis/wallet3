@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getSession, signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Loading from "@/features/loading";
+import Loading from "@/shared/loading";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
@@ -35,19 +35,7 @@ export default function LoginPage() {
             </div>
 
             <div className="grid gap-5 justify-items-center">
-                <Link href="/register">
-                    <Button appearance="primary">Register</Button>
-                </Link>
-
-                <Button appearance="normal" onClick={() => signIn("email")}>
-                    Login
-                </Button>
-            </div>
-
-            <Divider />
-
-            <div className="grid gap-5 justify-items-center">
-                <div>Login with</div>
+                <div>Log in with</div>
 
                 <div className="flex gap-6">
                     <button onClick={() => signIn("facebook")}>

@@ -1,10 +1,25 @@
-export default async function ApiCall<T extends {}>(
+export function CurrencyApiCall<T extends {}>(
+    action: string,
+    args?: any
+): Promise<T> {
+    return ApiCall("currency_data", action, args);
+}
+
+export function ExchangeApiCall<T extends {}>(
+    action: string,
+    args?: any
+): Promise<T> {
+    return ApiCall("exchangerates_data", action, args);
+}
+
+async function ApiCall<T extends {}>(
+    scope: string,
     action: string,
     args?: any
 ): Promise<T> {
     const apikey = process.env.APILAYER_KEY!;
 
-    let url = `https://api.apilayer.com/currency_data/${action}`;
+    let url = `https://api.apilayer.com/${scope}/${action}`;
 
     if (typeof args !== "undefined") {
         url += "?" + new URLSearchParams(args).toString();
@@ -28,11 +43,9 @@ export type ApiLayerCurrencyList = {
 };
 
 export type ApiLayerExchangeData = {
-    quotes: {
+    rates: {
         [code: string]: number;
     };
-    source: string;
-    timestamp: number;
 };
 
 type ApiLayerResponseSuccess<T extends {}> = {

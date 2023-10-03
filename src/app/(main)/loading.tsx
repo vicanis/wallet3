@@ -1,4 +1,4 @@
-import Loading from "@/features/loading";
+import Loading from "@/shared/loading";
 
 export default function LoadingPage() {
     return <Loading />;
