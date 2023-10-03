@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
     KeyboardContext,
     KeyboardContextType,
@@ -42,37 +42,29 @@ export default function Page() {
         [value]
     );
 
-    return (
-        <KeyboardContext.Provider value={keyboardContextData}>
-            <Container />
-        </KeyboardContext.Provider>
-    );
-}
-
-export function Container() {
-    const { value } = useContext(KeyboardContext);
-
     const [currencyFrom, setCurrencyFrom] = useState<string>("RUB");
     const [currencyTo, setCurrencyTo] = useState<string>("USD");
 
     return (
-        <div className="grid gap-4">
-            <Converter
-                value={value}
-                from={currencyFrom}
-                to={currencyTo}
-                onChangeCurrency={({
-                    from,
-                    to,
-                }: {
-                    from: string;
-                    to: string;
-                }) => {
-                    setCurrencyFrom(from);
-                    setCurrencyTo(to);
-                }}
-            />
-            <Keyboard />
-        </div>
+        <KeyboardContext.Provider value={keyboardContextData}>
+            <div className="grid gap-4">
+                <Converter
+                    value={value}
+                    from={currencyFrom}
+                    to={currencyTo}
+                    onChangeCurrency={({
+                        from,
+                        to,
+                    }: {
+                        from: string;
+                        to: string;
+                    }) => {
+                        setCurrencyFrom(from);
+                        setCurrencyTo(to);
+                    }}
+                />
+                <Keyboard />
+            </div>
+        </KeyboardContext.Provider>
     );
 }
